@@ -1,5 +1,7 @@
 # Slik kjører man koden
-Sørg for å ha installert [Node.js](https://nodejs.org/en/), last ned prosjektet, og åpne et terminalvindu i mappen til prosjektet. Kjør så følgende kommandoer:
+Sørg for å ha installert [Node.js](https://nodejs.org/en/).
+
+Last ned prosjektet, og åpne et terminalvindu i mappen til prosjektet. Kjør så følgende kommandoer:
 ```bash
 npm install
 npm run dev

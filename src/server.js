@@ -8,7 +8,7 @@ const dev = NODE_ENV === 'development';
 
 let app = polka();
 
-app.use(compression({ threshold: 0 });
+app.use(compression({ threshold: 0 }));
 app.use(sirv('static', { dev }));
 app.use(sapper.middleware());
 

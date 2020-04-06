@@ -11,6 +11,7 @@ $: gap = getStylingSize(margin);
   <slot></slot>
 </section>
 
+
 <style>
 section {
   display: grid;

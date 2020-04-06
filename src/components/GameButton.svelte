@@ -104,7 +104,7 @@ p {
 
 .background-image {
   object-fit: cover;
-  transition: transform 500ms ease-out;
+  transition: transform 200ms ease-out;
 }
 
 a:hover .background-image {

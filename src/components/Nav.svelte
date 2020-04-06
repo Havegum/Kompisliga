@@ -28,10 +28,13 @@ export let segment;
 
 <style>
 nav {
-	grid-row: footer-start / footer-end;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
 	font-weight: 300;
 	background-color: var(--black);
-	padding: 1em;
+	padding: .4em 1em .8em;
+	z-index: 0;
 }
 
 ul {

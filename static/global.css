@@ -11,6 +11,8 @@
 	--serif: 'Patua One', Georgia, serif;
 
 	--border-radius: 5px;
+
+	--gradient: linear-gradient(20deg, #D32F48, var(--blue));
 }
 
 * {

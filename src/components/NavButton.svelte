@@ -10,16 +10,17 @@ import Toppliste from '../icons/Toppliste.svelte';
 
 const icons = {
   ".": Spill,
-  premier: Premier,
-  profil: Profil,
-  lag: Lag,
-  toppliste: Toppliste
+  "premier": Premier,
+  "profil": Profil,
+  "lag": Lag,
+  "toppliste": Toppliste
 }
 </script>
 
+
 <a aria-selected='{segment === href || segment === undefined && href === '.'}' {href}>
   <svelte:component this={icons[href]} />
-  <slot></slot>
+  <p><slot></slot></p>
 </a>
 
 
@@ -37,7 +38,7 @@ a[aria-selected="true"] {
 }
 
 a :global(svg) {
-  transform: scale(0.8);
+  width: 2.3em;
   margin-bottom: -.5rem;
 }
 

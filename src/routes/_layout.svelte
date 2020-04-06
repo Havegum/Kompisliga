@@ -20,11 +20,12 @@ $: nav = [undefined, 'premier', 'toppliste', 'lag', 'profil'].includes(segment);
 <style>
 main {
 	position: relative;
-	max-width: 56em;
-	padding: 2em;
 	margin: 0 auto;
 	box-sizing: border-box;
 	grid-row: body-start / body-end;
+
+	width: 100%;
+	padding: 1rem;
 }
 
 .layout {

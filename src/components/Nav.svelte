@@ -28,8 +28,7 @@ export let segment;
 
 <style>
 nav {
-	position: fixed;
-	bottom: 0;
+	grid-row: footer-start / footer-end;
 	width: 100%;
 	font-weight: 300;
 	background-color: var(--black);

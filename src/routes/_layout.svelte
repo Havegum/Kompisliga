@@ -19,7 +19,7 @@ $: nav = [undefined, 'premier', 'toppliste', 'lag', 'profil'].includes(segment);
 
 <style>
 .layout {
-	min-height: 100vh;
+	height: 100vh;
 	display: grid;
 	grid-template-rows: [start header-start] auto [header-end body-start] 1fr [body-end footer-start] auto [footer-end end];
 }
@@ -31,5 +31,6 @@ main {
 	grid-row: body-start / body-end;
 	width: 100%;
 	padding: 1rem;
+	overflow-y: auto;
 }
 </style>

@@ -1,5 +1,7 @@
 <script>
-let canvas, h, w;
+let canvas;
+let h = 0;
+let w = 0;
 let size = 0.95;
 
 $: margin = (1 - size) / 2;
@@ -31,6 +33,8 @@ canvas {
   width: 100%;
   height: 100%;
   background-image: url('/media/video-placeholder.png');
+  background-position: center;
+  background-size: cover;
 }
 
 div {

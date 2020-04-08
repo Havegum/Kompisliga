@@ -1,13 +1,14 @@
 <script>
-import Stack from '../components/Stack.svelte';
-import Spacer from '../components/Spacer.svelte';
+import Spacer from '../components/layout/Spacer.svelte';
+import Stack from '../components/layout/Stack.svelte';
+import Grid from '../components/layout/Grid.svelte';
+
 import GameButton from '../components/GameButton.svelte';
+import TeamButton from '../components/TeamButton.svelte';
+import ArrowLeft from '../components/ArrowLeft.svelte';
 import Overlay from '../components/Overlay.svelte';
 import Scan from '../components/Scan.svelte';
 import Poll from '../components/Poll.svelte';
-import Grid from '../components/Grid.svelte';
-import TeamButton from '../components/TeamButton.svelte';
-import ArrowLeft from '../components/ArrowLeft.svelte';
 
 let scan = false;
 
@@ -38,8 +39,8 @@ function closeScan () {
 
 	<Stack margin="small">
 		<h2>Gjett utfallet</h2>
-		<GameButton name="Skiskyting" round="Jaktstart menn 12,5 km" channel="nrk1" img="media/skiskyting.jpg" href="."/>
-		<GameButton name="Sjakk" round="Finale lynsjakk" channel="nrk2" img="media/sjakk.jpg" href="."/>
+		<GameButton name="Skiskyting" round="Jaktstart menn 12,5 km" channel="nrk1" img="media/skiskyting.jpg" href="spill/skiskyting"/>
+		<GameButton name="Sjakk" round="Finale lynsjakk" channel="nrk2" img="media/sjakk.jpg" href="spill/skiskyting"/>
 	</Stack>
 
 
@@ -59,7 +60,10 @@ function closeScan () {
 			<TeamButton name="FabFive" href="."/>
 		</Grid>
 	</Stack>
+
+	<Spacer />
 </Stack>
+
 
 <Overlay visible={scan}>
 	<button class="scan-close-button" on:click={closeScan}>

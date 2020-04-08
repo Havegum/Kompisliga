@@ -1,4 +1,4 @@
-<img src="media/arrow-left.png"/>
+<img src="media/arrow-left.png" alt="pil til venstre"/>
 
 <style>
 img {

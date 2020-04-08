@@ -6,7 +6,7 @@ export let href;
 
 
 <a {href}>
-  <img src={img} />
+  <img src={img} alt=""/>
   <p>{name}</p>
 </a>
 

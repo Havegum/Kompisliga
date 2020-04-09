@@ -1,4 +1,4 @@
-<a href=".">
+<a href="/">
   <img src="media/NRK-logo-bw.svg" alt="NRK"/>
   <p>Kompisliga</p>
 </a>
@@ -16,7 +16,7 @@ a {
 img {
   display: block;
   height: .875rem;
-  margin-right: 1em;
+  margin-right: .6rem;
 }
 
 p {

@@ -1,14 +1,16 @@
 <script>
-import Spacer from '../components/layout/Spacer.svelte';
-import Stack from '../components/layout/Stack.svelte';
-import Grid from '../components/layout/Grid.svelte';
+import Spacer from '@/components/layout/Spacer.svelte';
+import Stack from '@/components/layout/Stack.svelte';
+import Grid from '@/components/layout/Grid.svelte';
 
-import GameButton from '../components/GameButton.svelte';
-import TeamButton from '../components/TeamButton.svelte';
-import ArrowLeft from '../components/ArrowLeft.svelte';
-import Overlay from '../components/Overlay.svelte';
-import Scan from '../components/Scan.svelte';
-import Poll from '../components/Poll.svelte';
+import GameButton from '@/components/GameButton.svelte';
+import TeamButton from '@/components/TeamButton.svelte';
+import ArrowLeft from '@/components/ArrowLeft.svelte';
+import Overlay from '@/components/Overlay.svelte';
+import Scan from '@/components/Scan.svelte';
+import Poll from '@/components/Poll.svelte';
+
+import { quizDone } from '@/helpers/state.js';
 
 let scan = false;
 
@@ -20,6 +22,7 @@ function closeScan () {
 	scan = false;
 }
 </script>
+
 
 <svelte:head>
 	<title>Kompisliga</title>
@@ -39,8 +42,21 @@ function closeScan () {
 
 	<Stack margin="small">
 		<h2>Gjett utfallet</h2>
-		<GameButton name="Skiskyting" round="Jaktstart menn 12,5 km" channel="nrk1" img="media/skiskyting.jpg" href="spill/skiskyting"/>
-		<GameButton name="Sjakk" round="Finale lynsjakk" channel="nrk2" img="media/sjakk.jpg" href="spill/skiskyting"/>
+		<GameButton
+			name="Skiskyting"
+			round="Jaktstart menn 12,5 km"
+			channel="nrk1"
+			img="media/skiskyting.jpg"
+			href="spill/skiskyting"
+			disabled={$quizDone}
+		/>
+		<GameButton
+			name="Sjakk"
+			round="Finale lynsjakk"
+			channel="nrk2"
+			img="media/sjakk.jpg"
+			href="spill/skiskyting"
+		/>
 	</Stack>
 
 
@@ -60,7 +76,6 @@ function closeScan () {
 			<TeamButton name="FabFive" href="."/>
 		</Grid>
 	</Stack>
-
 	<Spacer />
 </Stack>
 
@@ -71,6 +86,7 @@ function closeScan () {
 	</button>
 	<Scan />
 </Overlay>
+
 
 <style>
 .title {

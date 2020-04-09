@@ -4,10 +4,11 @@ export let channel;
 export let href;
 export let round;
 export let img = null;
+export let disabled = false;
 </script>
 
 
-<a {href}>
+<a href={disabled ? '' : href} class:disabled>
   <div class="channel">
     <img src="media/channel-{channel}.png" alt="Kanal: {channel}"/>
   </div>
@@ -38,6 +39,10 @@ a {
   text-decoration: none;
 }
 
+.disabled {
+  opacity: 0.2;
+}
+
 .channel {
   grid-column-start: channel;
   background-color: var(--white);
@@ -47,7 +52,6 @@ a {
   justify-content: center;
   align-items: center;
 }
-
 
 .content {
   grid-column-start: content;
@@ -60,6 +64,7 @@ a {
   overflow: hidden;
   text-shadow: 0 2px 4px #0009;
 }
+
 
 /* text */
 h3 {
@@ -107,7 +112,7 @@ p {
   transition: transform 200ms ease-out;
 }
 
-a:hover .background-image {
+a:not(.disabled):hover .background-image {
   transform: scale(1.15);
 }
 </style>

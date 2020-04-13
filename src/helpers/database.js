@@ -36,7 +36,7 @@ const NOT_A_DATABASE = {
           alternatives: [
             { text: "Norge",      img: "media/game-graphics/norge.png"      },
             { text: "Russland",   img: "media/game-graphics/russland.png"   },
-            { text: "Frankerike", img: "media/game-graphics/frankerike.png" },
+            { text: "Frankrike",  img: "media/game-graphics/frankrike.png"  },
             { text: "Tyskland",   img: "media/game-graphics/tyskland.png"   },
             { text: "Sverige",    img: "media/game-graphics/sverige.png"    },
             { text: "Andre",      img: "media/game-graphics/andre.png"      }

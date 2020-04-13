@@ -1,5 +1,6 @@
 <script>
 import ArrowLeft from '@/components/ArrowLeft.svelte';
+import ArrowRight from '@/components/ArrowRight.svelte';
 
 export let min = 0;
 export let max = 6;
@@ -15,9 +16,16 @@ function increment () {
 </script>
 
 <div class="controls">
-  <button on:click={decrement}>&lt;</button>
+  <button on:click={decrement}>
+    <ArrowLeft />
+  </button>
+
   <p>{value}{value === max ? '+' : ''}</p>
-  <button on:click={increment}>&gt;</button>
+
+
+  <button on:click={increment}>
+    <ArrowRight />
+  </button>
 </div>
 
 <figure>
@@ -39,8 +47,11 @@ function increment () {
 }
 
 button {
+  cursor: pointer;
   width: 4rem;
   height: 3rem;
+  background-color: transparent;
+  border: none;
 }
 
 figure {

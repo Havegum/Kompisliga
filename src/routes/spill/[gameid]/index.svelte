@@ -21,7 +21,7 @@ let max = game.parts.length + 2;
 </script>
 
 
-<Game {max} current={0}>
+<Game {max} current={0} exit=".">
   <div slot="header">
     <p>{game.type}</p>
     <Spacer />

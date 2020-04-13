@@ -1,5 +1,8 @@
 <script context="module">
 export function preload ({ params }) {
+  if (params.current < 1) {
+    this.redirect(301, `spill/${params.gameid}`);
+  }
   return params;
 }
 </script>
@@ -30,13 +33,14 @@ export let gameid;
 export let current;
 
 $: current = +current;
-let game = database.get(gameid, current - 1);
+$: final = current >= max - 2;
+$: game = database.get(gameid, current - 1);
 let max = database.get(gameid).parts.length + 2;
 
 let value = 0;
 
 function step () {
-  if (current >= max - 2) {
+  if (final) {
     quizDone.set(true);
     goto(`spill/${gameid}/ferdig`);
   } else {
@@ -47,7 +51,7 @@ function step () {
 </script>
 
 
-<Game {max} current={current} >
+<Game {max} current={current} back="spill/{gameid}/{current - 1}">
   <div slot="header">
     <p>{game.title}</p>
     <p>{game.question}</p>
@@ -55,7 +59,7 @@ function step () {
 
   <svelte:component this={inputTypes[game.inputType]} bind:value {...game.gameProperties}/>
 
-  <GradientButton arrow={true} on:click={step}>Spill</GradientButton>
+  <GradientButton arrow={true} on:click={step}>{final ? 'Lever svar' : 'Neste'}</GradientButton>
 </Game>
 
 

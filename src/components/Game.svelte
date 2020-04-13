@@ -3,10 +3,15 @@ import GradientHeader from '@/components/GradientHeader.svelte';
 import DotCarousel from '@/components/DotCarousel.svelte';
 import LogoHeader from '@/components/LogoHeader.svelte';
 import Spacer from '@/components/layout/Spacer.svelte';
+import ArrowLeft from '@/components/ArrowLeft.svelte';
 import Stack from '@/components/layout/Stack.svelte';
+import Cross from '@/components/Cross.svelte';
 
 export let max;
 export let current;
+
+export let exit = false;
+export let back = false;
 </script>
 
 
@@ -14,6 +19,14 @@ export let current;
   <div class="no-pad">
     <LogoHeader />
     <GradientHeader>
+    <div slot="navigation">
+        {#if back}
+          <a href={back}><ArrowLeft /></a>
+        {/if}
+        {#if exit}
+          <a href={exit}><Cross /></a>
+        {/if}
+      </div>
       <slot name="header"></slot>
     </GradientHeader>
   </div>

@@ -14,6 +14,9 @@ let h = 0;
     </defs>
     <path fill="url(#header-gradient)" d="M 0 0 L 0 {0.8*h} C {0.2*w} {h}, {0.8*w} {h}, {w} {0.8*h} L {w} 0"/>
   </svg>
+  <div class="navigation">
+    <slot name="navigation"></slot>
+  </div>
   <div class="content">
     <slot></slot>
   </div>
@@ -36,6 +39,12 @@ let h = 0;
   flex-direction: column;
   justify-content: center;
   flex-grow: 1;
+
+  padding: 0 1rem 3rem;
+}
+
+.navigation {
+  z-index: 1;
 }
 
 svg {

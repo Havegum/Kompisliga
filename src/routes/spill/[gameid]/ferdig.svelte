@@ -18,16 +18,20 @@ import database from '@/helpers/database.js';
 export let gameid;
 let game = database.get(gameid);
 let max = game.parts.length + 2;
+
+function endQuiz () {
+  goto(`/`);
+}
 </script>
 
-
-<Game {max} current={0}>
+<Game {max} current={max}>
   <div slot="header">
-    <p>{game.type}</p>
-    <Spacer />
-    <h1>{game.title}</h1>
+    <h1>Svar registrert!</h1>
     <p>{game.subtitle}</p>
+
     <Spacer />
+
+    <p><b>Følg med på resultatene på TV</b></p>
     <p>{game.closeDatestring}</p>
     <div class="channel">
       <img src="media/television.png" alt="">
@@ -35,25 +39,29 @@ let max = game.parts.length + 2;
     </div>
   </div>
 
-  <Box backgroundColor="blue" color="white">
-    <div class="lock-notification">
-      <span>Stenger om {game.closesIn}</span>
-      <img src="media/unlocked.png" alt="">
+  <Stack margin="small">
+    <h2>Deltakende lag i {game.title}</h2>
+    <div class="grid">
+      {#each game.teams as team}
+        <Box padding="small">
+          <div class="inline">
+            <img src="media/teams/{team.id}.png" alt="" />
+            <p>{team.name}</p>
+          </div>
+        </Box>
+      {/each}
     </div>
-  </Box>
+  </Stack>
 
-  <Box>
-    <Spacer />
-    {@html game.intro}
-    <Spacer />
-  </Box>
+  <Stack margin="small">
+    <h2>Tips</h2>
+    <Box>
+      Minn dine venner på å spille!
+      Dersom alle på laget deltar i spillet får dere bonus!
+    </Box>
+  </Stack>
 
-  <GradientButton
-    arrow={true}
-    on:click={() => goto(`spill/${gameid}/1`)}
-  >
-    Spill
-  </GradientButton>
+  <GradientButton arrow={true} on:click={endQuiz}>ferdig</GradientButton>
 </Game>
 
 
@@ -70,12 +78,20 @@ let max = game.parts.length + 2;
   transform: translateY(-2px);
 }
 
-.lock-notification {
+.inline {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
 }
 
-.lock-notification img {
-  height: 1.2rem;
+.inline p {
+  margin-left: .2rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: .5rem;
 }
 </style>

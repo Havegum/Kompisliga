@@ -7,7 +7,7 @@ $: dots = Array(max).fill().map((_, i) => i);
 
 <div class="dots">
   {#each dots as dot, i}
-    <div class="dot" class:active={dot + 1 === current}></div>
+    <div class="dot" class:active={dot === current}></div>
   {/each}
 </div>
 

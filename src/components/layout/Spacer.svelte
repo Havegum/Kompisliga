@@ -1,5 +1,5 @@
 <script>
-import getStylingSize from '../../helpers/getStylingSize.js';
+import getStylingSize from '@/helpers/getStylingSize.js';
 
 export let direction = 'vertical';
 export let size = 'medium';

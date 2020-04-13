@@ -2,11 +2,11 @@
 export let segment;
 export let href = '.';
 
-import Lag from '../icons/Lag.svelte';
-import Premier from '../icons/Premier.svelte';
-import Profil from '../icons/Profil.svelte';
-import Spill from '../icons/Spill.svelte';
-import Toppliste from '../icons/Toppliste.svelte';
+import Lag from '@/icons/Lag.svelte';
+import Premier from '@/icons/Premier.svelte';
+import Profil from '@/icons/Profil.svelte';
+import Spill from '@/icons/Spill.svelte';
+import Toppliste from '@/icons/Toppliste.svelte';
 
 const icons = {
   ".": Spill,

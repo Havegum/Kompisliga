@@ -13,30 +13,40 @@ const NOT_A_DATABASE = {
       {
         title: "Spørsmål 1",
         question: "Hvor mange blink treffer Johannes T. Bø i første skyting?",
-        inputType: "ShotMisses",
-        min: 0,
-        max: 5
+        inputType: "ShotsMissed",
+        gameProperties: {
+          min: 0,
+          max: 5
+        }
       },
       {
         title: "Spørsmål 2",
         question: "Hvor mange strafferunder får Martin Fourcade totalt i etappen?",
         inputType: "PenaltyRounds",
-        min: 0,
-        max: 6
+        gameProperties: {
+          min: 0,
+          max: 6
+        }
       },
       {
         title: "Spørsmål 3",
         question: "Hvem kommer først i mål?",
         inputType: "MultipleChoice",
-        alternatives: [
-          { text: "Norge",      img: "media/norge.jpg"      },
-          { text: "Russland",   img: "media/russland.jpg"   },
-          { text: "Frankerike", img: "media/frankerike.jpg" },
-          { text: "Tyskland",   img: "media/tyskland.jpg"   },
-          { text: "Sverige",    img: "media/sverige.jpg"    },
-          { text: "Andre",      img: "media/andre.jpg"      }
-        ]
+        gameProperties: {
+          alternatives: [
+            { text: "Norge",      img: "media/game-graphics/norge.png"      },
+            { text: "Russland",   img: "media/game-graphics/russland.png"   },
+            { text: "Frankerike", img: "media/game-graphics/frankerike.png" },
+            { text: "Tyskland",   img: "media/game-graphics/tyskland.png"   },
+            { text: "Sverige",    img: "media/game-graphics/sverige.png"    },
+            { text: "Andre",      img: "media/game-graphics/andre.png"      }
+          ]
+        }
       }
+    ],
+    teams: [
+      { id: "0dbe68", name: "MixMaster" },
+      { id: "c0sq79", name: "FabFive" }
     ]
   }
 }

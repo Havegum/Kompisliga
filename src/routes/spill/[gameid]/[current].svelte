@@ -1,93 +1,63 @@
+<script context="module">
+export function preload ({ params }) {
+  return params;
+}
+</script>
+
 <script>
 import { goto, stores } from '@sapper/app';
 
-import GradientButton from '@/components/GradientButton.svelte';
-import GradientHeader from '@/components/GradientHeader.svelte';
-import DotCarousel from '@/components/DotCarousel.svelte';
-import LogoHeader from '@/components/LogoHeader.svelte';
-import Box from '@/components/Box.svelte';
+import ShotsMissed from '@/components/gameinput/ShotMisses.svelte';
+import PenaltyRounds from '@/components/gameinput/PenaltyRounds.svelte';
+import MultipleChoice from '@/components/gameinput/MultipleChoice.svelte';
 
+const inputTypes = {
+  ShotsMissed,
+  PenaltyRounds,
+  MultipleChoice
+};
+
+import GradientButton from '@/components/GradientButton.svelte';
 import Spacer from '@/components/layout/Spacer.svelte';
 import Stack from '@/components/layout/Stack.svelte';
+import Game from '@/components/Game.svelte';
+import Box from '@/components/Box.svelte';
 
 import { quizDone } from '@/helpers/state.js';
 import database from '@/helpers/database.js';
 
-const { page } = stores();
-$: gameid = $page.params.gameid;
-$: current = +$page.params.current;
-$: game = database.get(gameid, current - 1);
-$: max = database.get(gameid).parts.length;
+export let gameid;
+export let current;
+
+$: current = +current;
+let game = database.get(gameid, current - 1);
+let max = database.get(gameid).parts.length + 2;
+
+let value = 0;
 
 function step () {
-  if (current >= max) {
+  if (current >= max - 2) {
     quizDone.set(true);
     goto(`spill/${gameid}/ferdig`);
   } else {
+    game = database.get(gameid, current);
     goto(`spill/${gameid}/${current + 1}`);
   }
 }
 </script>
 
 
-<div class="content">
-  <div class="no-pad">
-    <LogoHeader />
-    <GradientHeader>
-      <p>{game.title}</p>
-      <p>{game.question}</p>
-    </GradientHeader>
+<Game {max} current={current} >
+  <div slot="header">
+    <p>{game.title}</p>
+    <p>{game.question}</p>
   </div>
 
-  <div class="body">
-    <Spacer />
-    <Stack>
-      <Box>
-      </Box>
+  <svelte:component this={inputTypes[game.inputType]} bind:value {...game.gameProperties}/>
 
-      <GradientButton arrow={true} on:click={step}>Spill</GradientButton>
-    </Stack>
-    <Spacer />
-  </div>
-
-  <DotCarousel max={4} {current} />
-</div>
+  <GradientButton arrow={true} on:click={step}>Spill</GradientButton>
+</Game>
 
 
 <style>
-.content {
-  display: grid;
-  height: 100%;
-  grid-template-rows: [start header-start] auto [header-end body-start] 1fr [body-end footer-start] auto [footer-end end];
-}
-
-.body {
-  align-self: center;
-}
-
-.no-pad {
-  margin: -1rem;
-  grid-row: header-start / header-end;
-}
-
-.channel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.channel img {
-  height: 1rem;
-  margin-right: .3rem;
-  transform: translateY(-2px);
-}
-
-.lock-notification {
-  display: flex;
-  justify-content: space-between;
-}
-
-.lock-notification img {
-  height: 1.2rem;
-}
 </style>

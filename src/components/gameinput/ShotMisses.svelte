@@ -13,11 +13,13 @@ $: miss = Array(max).fill();
   <Spacer size="small" />
   <div class="targets">
 
-    <label for="target-0" class="target" class:active={value === 0}>
-      <input id="target-0" type="radio" bind:group={value} value={0}>
-      <p class="none">(ingen)</p>
-      <p class:active={value === 0}>{0}</p>
-    </label>
+    {#if min === 0}
+      <label for="target-0" class="target" class:active={value === 0}>
+        <input id="target-0" type="radio" bind:group={value} value={0}>
+        <p class="none">(ingen)</p>
+        <p class:active={value === 0}>{0}</p>
+      </label>
+    {/if}
 
     {#each miss as m, i}
       <label for="target-{i + 1}" class="target">

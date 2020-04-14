@@ -29,9 +29,8 @@ function increment () {
 </div>
 
 <figure>
-
-  <img class="penalty-figure" src="media/game-graphics/penalty-figure.png">
-  <img class="penalty-round" src="media/game-graphics/penalty-round.png">
+  <img class="penalty-figure" src="media/game-graphics/penalty-figure.png" alt="">
+  <img class="penalty-round" src="media/game-graphics/penalty-round.png" alt="">
 </figure>
 
 

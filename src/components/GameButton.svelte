@@ -112,7 +112,9 @@ p {
   transition: transform 200ms ease-out;
 }
 
-a:not(.disabled):hover .background-image {
+a:not(.disabled):hover .background-image,
+a:not(.disabled):focus .background-image,
+a:not(.disabled):active .background-image {
   transform: scale(1.15);
 }
 </style>

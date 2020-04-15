@@ -1,8 +1,7 @@
 <script context="module">
 export function preload ({ params }) {
-  if (params.current < 1) {
+  if (params.current < 1)
     this.redirect(301, `spill/${params.gameid}`);
-  }
   return params;
 }
 </script>

@@ -5,7 +5,7 @@ export function preload ({ params }) {
 </script>
 
 <script>
-import { goto, stores } from '@sapper/app';
+import { goto } from '@sapper/app';
 
 import GradientButton from '@/components/GradientButton.svelte';
 import Spacer from '@/components/layout/Spacer.svelte';
@@ -18,13 +18,9 @@ import database from '@/helpers/database.js';
 export let gameid;
 let game = database.get(gameid);
 let max = game.parts.length + 2;
-
-function endQuiz () {
-  goto(`/`);
-}
 </script>
 
-<Game {max} current={max}>
+<Game {max} current={max - 1}>
   <div slot="header">
     <h1>Svar registrert!</h1>
     <p>{game.subtitle}</p>
@@ -61,7 +57,7 @@ function endQuiz () {
     </Box>
   </Stack>
 
-  <GradientButton arrow={true} on:click={endQuiz}>ferdig</GradientButton>
+  <GradientButton arrow={true} on:click={() => goto(`/`)}>ferdig</GradientButton>
 </Game>
 
 

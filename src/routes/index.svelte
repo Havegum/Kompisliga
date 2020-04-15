@@ -1,26 +1,16 @@
 <script>
+import { onMount } from 'svelte';
+
 import Spacer from '@/components/layout/Spacer.svelte';
 import Stack from '@/components/layout/Stack.svelte';
 import Grid from '@/components/layout/Grid.svelte';
 
 import GameButton from '@/components/GameButton.svelte';
 import TeamButton from '@/components/TeamButton.svelte';
-import ArrowLeft from '@/components/ArrowLeft.svelte';
-import Overlay from '@/components/Overlay.svelte';
 import Scan from '@/components/Scan.svelte';
 import Poll from '@/components/Poll.svelte';
 
 import { quizDone } from '@/helpers/state.js';
-
-let scan = false;
-
-function displayScan () {
-	scan = true;
-}
-
-function closeScan () {
-	scan = false;
-}
 </script>
 
 
@@ -29,7 +19,7 @@ function closeScan () {
 </svelte:head>
 
 <Stack>
-	<button class="scan" on:click={displayScan} aria-label="Trykk her for å scanne TV-skjermen for å velge spill automatisk!"></button>
+	<Scan />
 	<Spacer/>
 	<figure class="title">
 		<img class="logo" alt="NRK" src="media/NRK-logo.svg"/>
@@ -80,14 +70,6 @@ function closeScan () {
 </Stack>
 
 
-<Overlay visible={scan}>
-	<button class="scan-close-button" on:click={closeScan}>
-		<ArrowLeft />
-	</button>
-	<Scan />
-</Overlay>
-
-
 <style>
 .title {
 	display: flex;
@@ -115,30 +97,5 @@ h1 {
 	font-weight: normal;
 	text-transform: uppercase;
 	text-align: left;
-}
-
-.scan {
-	cursor: pointer;
-	display: block;
-	position: absolute;
-	top: 0;
-	right: 0;
-	background-color: transparent;
-	border: none;
-	background-image: url('/media/scan.png');
-	background-repeat: no-repeat;
-	background-position: center;
-	width: 4rem;
-	height: 4rem;
-}
-
-.scan-close-button {
-	cursor: pointer;
-	background: transparent;
-	border: none;
-	position: fixed;
-	top: 2rem;
-	left: .75rem;
-	z-index: 1;
 }
 </style>

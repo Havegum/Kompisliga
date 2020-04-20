@@ -10,9 +10,3 @@ Nettsiden kjører nå i development mode, og du kan finne den på [localhost:300
 
 
 Sidene defineres i `src/routes/*`
-
-
-# TODO
-- [x] Bytt låsikon
-- [ ] Bytt «Spill» til «Hjem»
-- [x] Få scan til å ta deg til spillside

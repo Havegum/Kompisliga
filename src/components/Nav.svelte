@@ -8,7 +8,7 @@ export let segment;
 <nav>
 	<ul>
 		<li>
-			<NavButton {segment} href='.'>Spill</NavButton>
+			<NavButton {segment} href='.'>Hjem</NavButton>
 		</li>
 		<li>
 			<NavButton {segment} href='toppliste'>Toppliste</NavButton>

@@ -1,4 +1,5 @@
 <script>
+import { goto } from '@sapper/app';
 import { onMount } from 'svelte';
 
 import ArrowLeft from '@/components/ArrowLeft.svelte';
@@ -8,12 +9,15 @@ import Scan from '@/components/Scan.svelte';
 let scan = false;
 let scanEnabled = false;
 let scanTrigged = false;
-
+let scanFlash = false;
+let pendingResults = false;
 let canvas, video;
 
 let h = 0;
 let w = 0;
 let size = 0.95;
+
+let hint = 'Pek kameraet mot TV-en';
 
 $: margin = (1 - size) / 2;
 $: top = (h/2) - (size / 2 *w);
@@ -33,18 +37,34 @@ function closeScan () {
 	scan = false;
 }
 
-async function captureCamera () {
-  const stream = await navigator.mediaDevices.getUserMedia(media);
-  handleStream(stream);
+function captureCamera () {
+	navigator.mediaDevices
+		.getUserMedia(media)
+		.then(handleStream)
+		.catch(() => hint = 'Finner ikke kamera')
 }
 
 function handleStream (stream) {
   video.srcObject = stream;
 }
 
+async function scanImage () {
+	// NOTE: not implemented
+	scanFlash = true;
+	pendingResults = true;
+	hint = "Søker etter program ..."
+
+	await new Promise(resolve => setTimeout(resolve, 2000));
+	hint = "Fant skiskyting!"
+
+	await new Promise(resolve => setTimeout(resolve, 1000));
+	goto('spill/skiskyting');
+}
+
 onMount(() => {
 	scanEnabled = 'mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices;
 });
+
 </script>
 
 
@@ -56,8 +76,9 @@ onMount(() => {
 	</button>
 
   <div class="canvas-wrap" bind:clientHeight={h} bind:clientWidth={w} >
+		<div class="flash" class:active={scanFlash}></div>
     <div class="lightbox">
-      <svg class="camera-overlay">
+      <svg class="camera-overlay" class:inactive={pendingResults}>
         <path
           class="overlay"
           fill-rule="evenodd"
@@ -66,12 +87,15 @@ onMount(() => {
         />
         <rect class="outline" x="{left}" y="{top}" width={w*size} height={w*size} rx="5"/>
       </svg>
-      <p class="hint" style="top: calc({top}px - 2.4rem)">Pek kameraet mot TV-en</p>
+      <p class="hint" style="top: calc({top}px - 2.4rem)">{hint}</p>
     </div>
     <canvas bind:this={canvas}></canvas>
     <video bind:this={video} autoplay></video>
   </div>
-
+	<button class="round-button" on:click={scanImage}>
+		<img src="/media/scan.png" alt="">
+		<p>Skan</p>
+	</button>
 </Overlay>
 
 
@@ -109,6 +133,7 @@ onMount(() => {
 
 video,
 canvas,
+.flash,
 .lightbox,
 .canvas-wrap,
 .camera-overlay {
@@ -134,11 +159,38 @@ video {
   object-fit: cover;
 }
 
+.flash,
 .lightbox {
   position: fixed;
   z-index: 1;
   left: 0;
   top: 0;
+}
+
+.camera-overlay.inactive {
+	display: none;
+}
+
+@keyframes flash {
+	from {
+		background-color: var(--white);
+		opacity: .74;
+	}
+	to {
+		background-color: var(--dark);
+		opacity: .74;
+	}
+}
+
+.flash {
+	background-color: var(--white);
+	opacity: 0;
+}
+
+.flash.active {
+	background-color: var(--dark);
+	opacity: .74;
+	animation: 500ms flash ease-out;
 }
 
 .overlay {
@@ -159,4 +211,46 @@ video {
   text-shadow: 0 2px 4px #0009;
   width: 100%;
 }
+
+.round-button {
+	cursor: pointer;
+
+	position: fixed;
+	bottom: 4em;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	z-index: 1;
+	border: none;
+
+	background-color: var(--blue);
+
+	border-radius: 100%;
+	padding: 1rem;
+
+	color: var(--white);
+	font-weight: bold;
+}
+
+
+.round-button p,
+.round-button img {
+	display: block;
+	margin: 0 auto;
+}
+
+.round-button img {
+	height: 3rem;
+	position: relative;
+	bottom: .33rem;
+}
+
+.round-button p {
+	position: absolute;
+	bottom: .5rem;
+	left: 0;
+	right: 0;
+	font-size: .9rem;
+}
+
 </style>

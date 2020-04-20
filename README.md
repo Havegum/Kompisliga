@@ -13,6 +13,6 @@ Sidene defineres i `src/routes/*`
 
 
 # TODO
-- [] Bytt låsikon
-- [] Bytt «Spill» til «Hjem»
-- [] Få scan til å ta deg til spillside
+- [ ] Bytt låsikon
+- [ ] Bytt «Spill» til «Hjem»
+- [ ] Få scan til å ta deg til spillside

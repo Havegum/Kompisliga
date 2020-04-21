@@ -4,7 +4,6 @@ import { onMount } from 'svelte';
 
 import ArrowLeft from '@/components/ArrowLeft.svelte';
 import Overlay from '@/components/Overlay.svelte';
-import Scan from '@/components/Scan.svelte';
 
 let scan = false;
 let scanEnabled = false;

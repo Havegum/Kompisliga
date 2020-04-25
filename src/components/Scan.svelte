@@ -37,10 +37,14 @@ function closeScan () {
 }
 
 function captureCamera () {
-	navigator.mediaDevices
-		.getUserMedia(media)
-		.then(handleStream)
-		.catch(() => hint = 'Finner ikke kamera')
+	if (scanEnabled) {
+		navigator.mediaDevices
+			.getUserMedia(media)
+			.then(handleStream)
+			.catch(() => hint = 'Finner ikke kamera')
+	} else {
+		hint = 'Finner ikke kamera';
+	}
 }
 
 function handleStream (stream) {
@@ -67,7 +71,7 @@ onMount(() => {
 </script>
 
 
-<button class="scan" class:visible={scanEnabled} on:click={openScan} aria-label="Trykk her for å scanne TV-skjermen for å velge spill automatisk!"></button>
+<button class="scan" on:click={openScan} aria-label="Trykk her for å scanne TV-skjermen for å velge spill automatisk!"></button>
 
 <Overlay visible={scan}>
 	<button class="scan-close-button" on:click={closeScan}>
@@ -101,7 +105,7 @@ onMount(() => {
 <style>
 .scan {
 	cursor: pointer;
-	display: none;
+	display: block;
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -112,10 +116,6 @@ onMount(() => {
 	background-position: center;
 	width: 4rem;
 	height: 4rem;
-}
-
-.scan.visible {
-	display: block;
 }
 
 .scan-close-button {

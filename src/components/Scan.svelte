@@ -216,8 +216,8 @@ video {
 
 	position: fixed;
 	bottom: 4em;
-	left: 0;
-	right: 0;
+	left: 50%;
+  transform: translateX(-50%);
 	margin: 0 auto;
 	z-index: 1;
 	border: none;
